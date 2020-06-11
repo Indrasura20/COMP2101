@@ -18,15 +18,7 @@
 # setuid and setgid files and should have its own title
 # use the find command to generate the list of files with their sizes, with an error redirect to /dev/null
 # use cut or awk to display only the output desired
-
-echo "Setuid files:"
-echo "============="
-find / -type f -executable -perm -4000 -ls 2>/dev/null | sort -k 3
-echo ""
-
-echo "Setgid files"
-echo "============="
-find / -type f -executable -perm -2000 -ls 2>/dev/null | sort -k 6
+find / 2>/dev/null  -type f -exec ls -alh --block-size=M {} + | sort -hr -k5 | head | awk '{print $3,$5,$9}'
 # commands to display a second title
 # find command modified as needed
 # sort command to sort files appropriately
