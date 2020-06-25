@@ -17,15 +17,40 @@
 ###############
 # Variables   #
 ###############
-title="Overlord"
-myname="dennis"
-hostname="myhostname"
-
+title="King"
+name=$USER
+hostname=$(hostname)
+day=$(date +%A)
+time=$(date +'%I:%M %p')
 ###############
 # Main        #
 ###############
 cat <<EOF
 
-Welcome to planet $hostname, "$title $myname!"
+Welcome to planet $hostname, $title $name!
+It is $day at $time
 
 EOF
+
+#Task4:
+#I have given different conditions for each day
+if [[ $day = Monday ]]; then
+cowt='You shall be confident on Monday.'
+elif [[ $day = Tuesday ]]; then
+cowt='You will be optimistic on Tuesday.'
+elif [[ $day = Wednesday ]]; then
+cowt='You will succeed on Wednesday.'
+elif [[ $day = Thursday ]]; then
+cowt='You will do your best on Thursday.'
+elif [[ $day = Friday ]]; then
+cowt='You will find happiness on Friday.'
+elif [[ $day = Saturday ]]; then
+cowt='You will be Energetic on Saturday.'
+elif [[ $day = Sunday ]];
+then
+cowt="You shall be Superman on Sunday."
+fi
+#I assigned the conditions to the cowd variable
+
+#Then I used the cowsay command to invoke the conditions for Task4
+cowsay $cowt
