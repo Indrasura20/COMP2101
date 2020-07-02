@@ -75,11 +75,39 @@
 #   External IP     : $myExternalIP
 #   External Name   : $myExternalName
 
-cat <<EOF
-Hostname        : $(hostname)
-LAN Address     : $(ip a s $(ip a |awk '/: e/{gsub(/:/,"");print $2}')|awk '/inet /{gsub(/\/.*/,"");print $2}')
-LAN Hostname    : $(getent hosts $(ip a s $(ip a |awk '/: e/{gsub(/:/,"");print $2}')|awk '/inet /{gsub(/\/.*/,"");print $2}')| awk '{print $2}')
-External IP     : $(curl -s icanhazip.com)
-External Name   : $(getent hosts $(curl -s icanhazip.com) | awk '{print $2}')
-EOF
 
+
+
+#Task1:
+
+echo "Generating network data...
+"
+#Variables:
+
+#hostname is assigned to variable
+hostname=$(hostname)
+
+#All the network data is assigned to variables to make it short and using the other variables to also simplify the rest of the commands
+interfaceName=$(ip a |awk '/: e/{gsub(/:/,"");print $2}')
+lanAddress=$(ip a s $interfaceName|awk '/inet /{gsub(/\/.*/,"");print $2}')
+lanHostname=$(getent hosts $lanAddress| awk '{print $2}')
+externalIP=$(curl -s icanhazip.com)
+externalName=$(getent hosts $externalIP | awk '{print $2}')
+
+#Task2:
+
+#The router address and hostname is assigned by using the ip r command to get DNS names and choosing the default option with grep to show only the router ip address
+routerAddress=$(ip r | grep default | awk '{print $3}')
+#The router hostname is attained by using awk to show the hostname corresponding to the router ip address
+routerHostname=$(getent hosts $routerAddress | awk '{print $2}')
+
+#Network information:
+cat <<EOF
+Hostname        : $hostname
+LAN Address     : $lanAddress
+LAN Hostname    : $lanHostname
+External IP     : $externalIP
+External Name   : $externalName
+Router Address  : $routerAddress
+Router Hostname : $routerHostname
+EOF
