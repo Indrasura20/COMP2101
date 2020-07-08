@@ -27,8 +27,6 @@ time=$(date +'%I:%M %p')
 ###############
 cat <<EOF
 
-Welcome to planet $hostname, $title $name!
-It is $day at $time
 
 EOF
 
@@ -50,7 +48,9 @@ elif [[ $day = Sunday ]];
 then
 cowt="You shall be Superman on Sunday."
 fi
-#I assigned the conditions to the cowd variable
+#I assigned the conditions to the cowt variable
 
 #Then I used the cowsay command to invoke the conditions for Task4
-cowsay $cowt
+
+cowsay "$cowt Welcome to planet $hostname, $title $name!
+It is $day at $time"
