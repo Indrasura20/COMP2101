@@ -14,29 +14,27 @@
 
 #  display a summary of what was rolled, and what the results of your arithmetic were
 
-#Task 1
-#number of sides is assigned to a variable as range for random number.
-range=6
 
-#The bias is assigned to a variable.
-bias=1
 
-# Telling the user we have started processing
+#Task 1:
+#Number of sides is assigned to a variable as range of random number.
+Range=6
+
+#Bias or minimum value for the generated number is assigned to a variable.
+Bias=1
+
+
+#Dice is rolled using the variables for the range and bias.
+# Telling the user we have started processing.
 echo "Rolling..."
+# roll the dice and save the results
+die1=$(( RANDOM % Range + Bias))
+die2=$(( RANDOM % Range + Bias ))
 
-#Dice are rolled using the variables for the range and bias
-die1=$(( RANDOM % $range + $bias ))
-die2=$(( RANDOM % $range + $bias ))
-
-#Results of the rolled dice are displayed
-echo "
-### Results ###"
-echo "Rolled $die1, $die2"
-
-#Sum of the results of the two dice are generated
+#Task 2:
 Sum=$(( die1 + die2 ))
-echo "The sum of the two rolled dice is $Sum."
-
-#Average of the rolled dice is generated
-Average=$(( Sum / 2 ))
-echo "The average of the two rolled dice is $Average."
+Average=$(( $Sum / 2))
+#A summary of what was rolled and what the results of the arithmetic were are displayed to the user.
+echo "Rolled $die1, $die2"
+echo "The sum of the rolled dice is $Sum."
+echo "The average of the rolled dice is $Average."
