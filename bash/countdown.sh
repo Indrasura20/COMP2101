@@ -61,6 +61,8 @@ trap interrupt SIGINT
 trap quit SIGQUIT
 
 
+
+
 # Produce the numbers for the countdown
 function doCountdown {
 while [ $sleepCount -gt 0 ]; do
