@@ -58,7 +58,7 @@ function quit {
 trap interrupt SIGINT
 
 #The below command is used to trap the QUIT signal when recieved and invoke the quit function.
-trap interrupt SIGQUIT
+trap quit SIGQUIT
 
 
 # Produce the numbers for the countdown
